@@ -41,5 +41,20 @@ namespace Pi_Api.Controllers
                 return ApiMessageEntity.Error(e);
             }
         }
+
+        [HttpPost]
+        public async Task<ApiMessageEntity> Test()
+        {
+            try
+            {
+                _piTestServices.Transaction_Test();
+
+                return ApiMessageEntity.Error("_piTestServices 方法返回false");
+            }
+            catch (Exception e)
+            {
+                return ApiMessageEntity.Error(e);
+            }
+        }
     }
 }

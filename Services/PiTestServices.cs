@@ -1,16 +1,19 @@
-﻿using System.Device.Gpio;
-using IRepository.IBaseRepository;
-using IServices;
+﻿using IServices;
 using Model.MySql;
 using Services.BaseServices;
+using System;
+using System.Device.Gpio;
 using System.Threading.Tasks;
 
 namespace Services
 {
     public class PiTestServices : BaseServices<tb_pi_test>, IPiTestServices
     {
+        public PiDBContext _db;
+
         public PiTestServices(PiDBContext piDbContext) : base(piDbContext)
         {
+            _db = piDbContext;
         }
 
         public async Task<bool> Led(int Gpio, bool Is_High)
@@ -30,6 +33,22 @@ namespace Services
                 return true;
             }
             controller.Write(Gpio, PinValue.High);
+            return true;
+        }
+
+        public bool Transaction_Test()
+        {
+            using (var transaction = _db.Database.BeginTransaction())
+            {
+                tb_pi_test tb_pi_test = new tb_pi_test();
+                tb_pi_test.id = Guid.NewGuid();
+                test test = new test();
+                test.id = Guid.NewGuid();
+                _baseRepository.Add(tb_pi_test);
+                _baseRepository.Add(test);
+                transaction.Commit();
+            }
+
             return true;
         }
     }

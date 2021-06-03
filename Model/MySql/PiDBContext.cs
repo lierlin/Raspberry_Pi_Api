@@ -12,12 +12,13 @@ namespace Model.MySql
         {
         }
 
-        //public PiDBContext(DbContextOptions<PiDBContext> options)
-        //    : base(options)
-        //{
-        //}
+        public PiDBContext(DbContextOptions<PiDBContext> options)
+            : base(options)
+        {
+        }
 
         public virtual DbSet<tb_pi_test> tb_pi_tests { get; set; }
+        public virtual DbSet<test> tests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +38,25 @@ namespace Model.MySql
             {
                 entity.HasComment("树莓派测试");
 
+                entity.Property(e => e.id).HasComment("ID 主键");
+
+                entity.Property(e => e.create_time).HasComment("创建时间");
+
+                entity.Property(e => e.create_user).HasComment("创建人");
+
+                entity.Property(e => e.is_delete).HasComment("是否删除");
+
+                entity.Property(e => e.is_success).HasComment("是否成功");
+
+                entity.Property(e => e.order_number).HasComment("排序字段");
+
+                entity.Property(e => e.update_time).HasComment("修改时间");
+
+                entity.Property(e => e.update_user).HasComment("修改人");
+            });
+
+            modelBuilder.Entity<test>(entity =>
+            {
                 entity.Property(e => e.id).HasComment("ID 主键");
 
                 entity.Property(e => e.create_time).HasComment("创建时间");
