@@ -4,28 +4,28 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Model.MySql
+namespace Model.pi1
 {
-    public partial class PiDBContext : DbContext
+    public partial class pi1DBContext : DbContext
     {
-        public PiDBContext()
+        public pi1DBContext()
         {
         }
 
-        public PiDBContext(DbContextOptions<PiDBContext> options)
+        public pi1DBContext(DbContextOptions<pi1DBContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<tb_pi_test> tb_pi_tests { get; set; }
-        public virtual DbSet<test> tests { get; set; }
+        public virtual DbSet<tb_pi_test1> tb_pi_test1s { get; set; }
+        public virtual DbSet<test1> test1s { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=172.30.199.20;database=pi;user id=root;password=Docimax@123", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.7.31-mysql"));
+                optionsBuilder.UseMySql("server=172.30.199.20;database=pi1;user id=root;password=Docimax@123", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.7.31-mysql"));
             }
         }
 
@@ -34,7 +34,7 @@ namespace Model.MySql
             modelBuilder.HasCharSet("utf8")
                 .UseCollation("utf8_general_ci");
 
-            modelBuilder.Entity<tb_pi_test>(entity =>
+            modelBuilder.Entity<tb_pi_test1>(entity =>
             {
                 entity.HasComment("树莓派测试");
 
@@ -55,7 +55,7 @@ namespace Model.MySql
                 entity.Property(e => e.update_user).HasComment("修改人");
             });
 
-            modelBuilder.Entity<test>(entity =>
+            modelBuilder.Entity<test1>(entity =>
             {
                 entity.Property(e => e.id).HasComment("ID 主键");
 

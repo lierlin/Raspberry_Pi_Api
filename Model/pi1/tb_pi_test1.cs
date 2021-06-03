@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Model.MySql
+namespace Model.pi1
 {
-    [Table("tb_pi_test")]
-    public partial class tb_pi_test
+    [Table("tb_pi_test1")]
+    public partial class tb_pi_test1
     {
         [Key]
         public Guid id { get; set; }

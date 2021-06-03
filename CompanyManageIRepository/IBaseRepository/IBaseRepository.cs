@@ -13,6 +13,10 @@ namespace IRepository.IBaseRepository
     /// <typeparam name="TEntity"></typeparam>
     public interface IBaseRepository<TEntity> where TEntity : class
     {
-        public int Add<TEntity>(TEntity model) where TEntity : class;
+        public int Add<T>(T model) where T : class;
+
+        public void AddNo<T>(T model) where T : class;
+
+        public int SaveChange();
     }
 }

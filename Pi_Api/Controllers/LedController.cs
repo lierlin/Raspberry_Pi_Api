@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IServices;
 using Model;
-using Model.MySql;
+using Model.pi;
 
 namespace Pi_Api.Controllers
 {
@@ -43,11 +43,11 @@ namespace Pi_Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ApiMessageEntity> Test()
+        public async Task<ApiMessageEntity> TestAsync()
         {
             try
             {
-                _piTestServices.Transaction_Test();
+                var s1 = await _piTestServices.Transaction_TestAsync();
 
                 return ApiMessageEntity.Error("_piTestServices 方法返回false");
             }

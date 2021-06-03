@@ -1,12 +1,12 @@
 ﻿using IRepository;
-using Model.MySql;
+using Model.pi;
 using Repository.BaseRepository;
 
 namespace Repository
 {
     public class TestRepository : BaseRepository<test>, IPiTestRepository
     {
-        public TestRepository(PiDBContext piDbContext) : base(piDbContext)
+        public TestRepository(piDBContext piDBContext) : base(piDBContext)
         {
         }
     }

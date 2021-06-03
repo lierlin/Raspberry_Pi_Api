@@ -58,8 +58,16 @@ namespace Repository.BaseRepository
 
         public int Add<T>(T model) where T : class
         {
-            db.Entry(model).State = EntityState.Added;
-            return db.SaveChanges();
+            try
+            {
+                db.Entry(model).State = EntityState.Added;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         #endregion 02-新增
@@ -359,7 +367,15 @@ namespace Repository.BaseRepository
         /// <returns></returns>
         public int SaveChange()
         {
-            return db.SaveChanges();
+            try
+            {
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         #endregion 01-批量处理SaveChange()

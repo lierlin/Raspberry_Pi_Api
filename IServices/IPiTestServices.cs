@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using IServices.IBaseServices;
-using Model.MySql;
+using Model.pi;
 
 namespace IServices
 {
@@ -9,6 +9,6 @@ namespace IServices
     {
         Task<bool> Led(int Gpio, bool Is_High);
 
-        bool Transaction_Test();
+        Task<bool> Transaction_TestAsync();
     }
 }

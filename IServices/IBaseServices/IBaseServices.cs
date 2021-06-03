@@ -14,5 +14,9 @@ namespace IServices.IBaseServices
     public interface IBaseServices<TEntity> where TEntity : class
     {
         public int Add<TEntity>(TEntity model) where TEntity : class;
+
+        public void AddNo<T>(T model) where T : class;
+
+        public int SaveChange();
     }
 }

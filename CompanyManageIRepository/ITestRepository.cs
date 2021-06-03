@@ -1,5 +1,5 @@
 ﻿using IRepository.IBaseRepository;
-using Model.MySql;
+using Model.pi;
 
 namespace IRepository
 {

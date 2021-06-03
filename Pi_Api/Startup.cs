@@ -12,7 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Model.MySql;
+using Model.pi;
+using Model.pi1;
 using Repository;
 using Repository.BaseRepository;
 using Services;
@@ -69,7 +70,9 @@ namespace Pi_Api
         {
             //https://www.cnblogs.com/atomy/p/12834804.html
             //接口、程序集注入
-            builder.RegisterType<PiDBContext>().SingleInstance();
+            builder.RegisterType<piDBContext>().SingleInstance();
+            builder.RegisterType<pi1DBContext>().SingleInstance();
+
             builder.RegisterType<tb_pi_test>().InstancePerDependency();
             builder.RegisterType<PiTestServices>().As<IPiTestServices>();
         }
