@@ -1,22 +1,11 @@
-using System;
-using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using IRepository;
-using IRepository.IBaseRepository;
-using IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Model.pi;
-using Model.pi1;
-using Repository;
-using Repository.BaseRepository;
-using Services;
 
 namespace Pi_Api
 {
@@ -69,12 +58,27 @@ namespace Pi_Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             //https://www.cnblogs.com/atomy/p/12834804.html
-            //接口、程序集注入
-            builder.RegisterType<piDBContext>().SingleInstance();
-            builder.RegisterType<pi1DBContext>().SingleInstance();
+            ////接口、程序集注入
+            //builder.RegisterType<piDBContext>().SingleInstance();
+            //builder.RegisterType<pi1DBContext>().SingleInstance();
+            builder.RegisterModule(new AutofacModule.AutofacModule());
+            ////加载程序集
+            //var Model = Assembly.Load("Model");
+            ////根据名称约定（服务层的接口和实现均以Service结尾），实现服务接口和服务实现的依赖
+            //builder.RegisterAssemblyTypes(Model)
+            //    .Where(t => t.Name.Contains("pi"))
+            //    .AsImplementedInterfaces().PropertiesAutowired();
 
-            builder.RegisterType<tb_pi_test>().InstancePerDependency();
-            builder.RegisterType<PiTestServices>().As<IPiTestServices>();
+            ////加载程序集
+            //var iServices = Assembly.Load("IServices");
+            //var services = Assembly.Load("Services");
+            ////根据名称约定（服务层的接口和实现均以Service结尾），实现服务接口和服务实现的依赖
+            //builder.RegisterAssemblyTypes(iServices, services)
+            //    .Where(t => t.Name.EndsWith("Services"))
+            //    .AsImplementedInterfaces().PropertiesAutowired();
+
+            // builder.RegisterType<tb_pi_test>().InstancePerDependency();
+            //builder.RegisterType<PiTestServices>().As<IPiTestServices>();
         }
     }
 }

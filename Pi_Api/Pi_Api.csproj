@@ -19,6 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\AutofacModule\AutofacModule.csproj" />
 		<ProjectReference Include="..\IServices\IServices.csproj" />
 		<ProjectReference Include="..\Model\Model.csproj" />
 		<ProjectReference Include="..\Services\Services.csproj" />

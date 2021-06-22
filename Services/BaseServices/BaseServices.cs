@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using AutofacModule;
 using IRepository.IBaseRepository;
 using IServices.IBaseServices;
 using Microsoft.EntityFrameworkCore;
-using Model.pi;
 using Repository.BaseRepository;
 
 namespace Services.BaseServices
@@ -15,23 +14,23 @@ namespace Services.BaseServices
     /// <typeparam name="TEntity"></typeparam>
     public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new()
     {
-        public IBaseRepository<TEntity> _baseRepository;
-        public IBaseRepository<TEntity> _baseRepository1;
+        [Property]
+        public IBaseRepository<TEntity> _baseRepository { get; set; }
 
         //public BaseServices(IBaseRepository<TEntity> baseRepository)
         //{
         //    _baseRepository = baseRepository;
         //}
-        public BaseServices(DbContext piDBContext)
-        {
-            _baseRepository = new BaseRepository<TEntity>(piDBContext);
-        }
+        //public BaseServices(DbContext piDBContext)
+        //{
+        //    _baseRepository = new BaseRepository<TEntity>(piDBContext);
+        //}
 
-        public BaseServices(DbContext DbContext1, DbContext DbContext2)
-        {
-            _baseRepository = new BaseRepository<TEntity>(DbContext1);
-            _baseRepository1 = new BaseRepository<TEntity>(DbContext2);
-        }
+        //public BaseServices(DbContext DbContext1, DbContext DbContext2)
+        //{
+        //    _baseRepository = new BaseRepository<TEntity>(DbContext1);
+        //    _baseRepository1 = new BaseRepository<TEntity>(DbContext2);
+        //}
 
         public int Add<T>(T model) where T : class
         {

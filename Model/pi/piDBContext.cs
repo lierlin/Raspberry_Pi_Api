@@ -12,10 +12,10 @@ namespace Model.pi
         {
         }
 
-        public piDBContext(DbContextOptions<piDBContext> options)
-            : base(options)
-        {
-        }
+        //public piDBContext(DbContextOptions<piDBContext> options)
+        //    : base(options)
+        //{
+        //}
 
         public virtual DbSet<tb_pi_test> tb_pi_tests { get; set; }
         public virtual DbSet<test> tests { get; set; }

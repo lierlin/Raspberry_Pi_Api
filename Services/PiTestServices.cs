@@ -14,10 +14,10 @@ namespace Services
     {
         public piDBContext _db;
 
-        public PiTestServices(piDBContext piDBContext, pi1DBContext pi1DBContext) : base(piDBContext, pi1DBContext)
-        {
-            _db = piDBContext;
-        }
+        //public PiTestServices(piDBContext piDBContext, pi1DBContext pi1DBContext) : base(piDBContext, pi1DBContext)
+        //{
+        //    _db = piDBContext;
+        //}
 
         public async Task<bool> Led(int Gpio, bool Is_High)
         {
@@ -42,6 +42,10 @@ namespace Services
         public async Task<bool> Transaction_TestAsync()
 
         {
+            test test = new test();
+            test.id = Guid.NewGuid();
+            _baseRepository.Add(test);
+
             #region SaveChanges  事务
 
             #region 单库单表合并提交
