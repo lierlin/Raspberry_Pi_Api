@@ -24,12 +24,13 @@ namespace Pi_Api.Controllers
             _tbPiTest = tbPiTest;
         }
 
+
         [HttpPost]
         public async Task<ApiMessageEntity> LedOption(int Gpio, bool Is_High)
         {
             try
             {
-                var res = await _piTestServices.Led(Gpio, Is_High);
+                var res = _piTestServices.Led(Gpio, Is_High);
                 if (res)
                 {
                     return ApiMessageEntity.Ok();
@@ -42,13 +43,31 @@ namespace Pi_Api.Controllers
             }
         }
 
+        //[HttpPost]
+        //public async Task<ApiMessageEntity> TestAsync()
+        //{
+        //    try
+        //    {
+        //        var s1 =  _piTestServices.Transaction_Test();
+
+        //        return ApiMessageEntity.Error("_piTestServices 方法返回false");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return ApiMessageEntity.Error(e);
+        //    }
+        //}
+
         [HttpPost]
-        public async Task<ApiMessageEntity> TestAsync()
+        public async Task<ApiMessageEntity> MorseCode(string morseMsg)
         {
             try
             {
-                var s1 = await _piTestServices.Transaction_TestAsync();
-
+                var res = _piTestServices.Morse(morseMsg);
+                if (res)
+                {
+                    return ApiMessageEntity.Ok();
+                }
                 return ApiMessageEntity.Error("_piTestServices 方法返回false");
             }
             catch (Exception e)
@@ -56,5 +75,6 @@ namespace Pi_Api.Controllers
                 return ApiMessageEntity.Error(e);
             }
         }
+
     }
 }

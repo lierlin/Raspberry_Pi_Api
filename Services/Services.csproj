@@ -10,6 +10,7 @@
 		<ProjectReference Include="..\AutofacModule\AutofacModule.csproj" />
 		<ProjectReference Include="..\CompanyManageIRepository\IRepository.csproj" />
 		<ProjectReference Include="..\CompanyManageRepository\Repository.csproj" />
+		<ProjectReference Include="..\Extension\Extensions.csproj" />
 		<ProjectReference Include="..\IServices\IServices.csproj" />
 	</ItemGroup>
 </Project>

@@ -26,6 +26,8 @@ namespace Pi_Api.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            var s = "pdf1";
+            var s1 = s.ToUpper().Contains("PDF");
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
