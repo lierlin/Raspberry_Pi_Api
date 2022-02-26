@@ -25,6 +25,31 @@ namespace Pi_Api.Controllers
         }
 
 
+        /// <summary>
+        /// Manual Drive   
+        /// </summary>
+        /// <param name="direction">forward backward leftward rightward</param>
+        /// <param name="duration">时长(s)</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ApiMessageEntity> ManualDrive(string direction, int  duration)
+        {
+            try
+            {
+                var res = _piTestServices.ManualDrive(direction, duration);
+                if (res)
+                {
+                    return ApiMessageEntity.Ok();
+                }
+                return ApiMessageEntity.Error("ManualDrive 方法返回false");
+            }
+            catch (Exception e)
+            {
+                return ApiMessageEntity.Error(e);
+            }
+        }
+
+
         [HttpPost]
         public async Task<ApiMessageEntity> LedOption(int Gpio, bool Is_High)
         {

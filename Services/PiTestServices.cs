@@ -9,13 +9,14 @@ using System.Transactions;
 using Model.pi1;
 using Extensions;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace Services
 {
     public class PiTestServices : BaseServices<tb_pi_test>, IPiTestServices
     {
         public piDBContext _db;
-       
+
         //public PiTestServices(piDBContext piDBContext, pi1DBContext pi1DBContext) : base(piDBContext, pi1DBContext)
         //{
         //    _db = piDBContext;
@@ -58,6 +59,71 @@ namespace Services
             controller.Write(Gpio, PinValue.Low);
             return true;
         }
+
+        public bool ManualDrive(string direction, int duration)
+        {
+      
+            List<int> gpioList = new List<int>();
+            direction=direction.Trim().ToLower();
+            //22,18 |26,24
+            //10, 8 |16 ,12
+            if (direction=="forward")
+            {
+                gpioList.Add(26);
+                gpioList.Add(22);
+                gpioList.Add(10);
+                gpioList.Add(16);
+                Start(gpioList, duration);
+            }
+            //22,18 |26,24
+            //10, 8 |16 ,12
+            else if (direction=="backward")
+            {
+                gpioList.Add(24);
+                gpioList.Add(18);
+                gpioList.Add(8);
+                gpioList.Add(12);
+                Start(gpioList, duration);
+            }
+            //22,18 |26,24
+            //10, 8 |16 ,12
+            else if (direction=="leftward")
+            {
+               
+                gpioList.Add(18);
+                gpioList.Add(12);
+                gpioList.Add(26);
+                gpioList.Add(10);
+                Start(gpioList, duration);
+            }
+            //22,18 |26,24
+            //10, 8 |16 ,12
+            else if (direction=="rightward")
+            {
+                gpioList.Add(22);
+                gpioList.Add(16);
+                gpioList.Add(24);
+                gpioList.Add(8);
+                Start(gpioList, duration);
+            }
+            return true;
+
+        }
+        public bool Start(List<int> gpioList, int duration)
+        {
+
+            foreach (var gpio in gpioList)
+            {
+                Led(gpio, true);
+            }
+            Thread.Sleep(duration*1000);
+            foreach (var gpio in gpioList)
+            {
+                Led(gpio, false);
+            }
+            return true;
+        }
+
         public bool Morse(string msg)
         {
             #region 摩尔斯密码操作类调用测试
